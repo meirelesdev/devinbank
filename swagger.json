@@ -37,6 +37,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -46,30 +49,18 @@
         "tags": [
           "User"
         ],
-        "description": "Endpoint para registrar um novo usuario.",
+        "description": "Endpoint que mostra os dados de um usuário cadastrado.",
         "parameters": [
           {
             "name": "userID",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "Parametros necessarios para criar um novo usuário.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Usuario registrado com sucesso.",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -80,30 +71,18 @@
         "tags": [
           "User"
         ],
-        "description": "Endpoint para registrar um novo usuario.",
+        "description": "Endpoint para atualizar um usuario já cadastrado.",
         "parameters": [
           {
             "name": "userID",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "Parametros necessarios para criar um novo usuário.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Usuario registrado com sucesso.",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
@@ -119,51 +98,24 @@
         "description": "Endpoint para registrar um novo usuario.",
         "parameters": [
           {
-            "name": "obj",
+            "name": "body",
             "in": "body",
-            "description": "Parametros necessarios para criar um novo usuário.",
-            "required": true,
             "schema": {
-              "$ref": "#/definitions/User"
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                }
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Usuario registrado com sucesso.",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/v1/singin": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "description": "Endpoint para registrar um novo usuario.",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "description": "Parametros necessarios para criar um novo usuário.",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Usuario registrado com sucesso.",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "OK"
           },
           "404": {
             "description": "Not Found"
