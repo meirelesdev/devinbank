@@ -1,12 +1,8 @@
 const express = require('express')
-const swaggerUI = require('swagger-ui-express')
-const swaggerFile = require('./swagger.json')
-
+const transactionsRoutes = require('./v1/transactionRoutes')
+const usersRoutes = require('./v1/userRoutes')
 const routes = express.Router()
 
-routes.get('/teste', (req, res)=>{
-    console.log('teste')
-})
-routes.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile))
+routes.use('/api/v1/', [usersRoutes,transactionsRoutes])
 
 module.exports = routes

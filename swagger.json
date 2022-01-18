@@ -1,22 +1,405 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "DevInBank",
-    "description": "Bom vindo, aqui você encontra todos os endpoints da API DevInBank.",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "title": "DevInBank | Conta-365",
+    "description": "Bem vindo, aqui você encontra todos os endpoints da API Conta365."
   },
   "host": "localhost:3333",
   "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Neste endpoint você tem acesso as informações de usuarios."
+    },
+    {
+      "name": "Transaction",
+      "description": "Neste endpoint você tem acesso as informações das transações de usuarios."
+    }
+  ],
   "schemes": [
     "http"
   ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
-    "/teste": {
+    "/api/v1/users": {
       "get": {
-        "description": "",
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint que lista todos os usuários cadastrados.",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
+    },
+    "/api/v1/users/{userID}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para registrar um novo usuario.",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Parametros necessarios para criar um novo usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario registrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para registrar um novo usuario.",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Parametros necessarios para criar um novo usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario registrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/singup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para registrar um novo usuario.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Parametros necessarios para criar um novo usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario registrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/singin": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para registrar um novo usuario.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Parametros necessarios para criar um novo usuário.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario registrado com sucesso.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/transactions/{userID}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/transactions/{userID}/{financialID}": {
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "financialID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/transactions/import/{userID}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "e-mail@email.com.br"
+        }
+      }
+    },
+    "Transaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "userId": {
+          "type": "number",
+          "example": 2
+        },
+        "financialData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              },
+              "price": {
+                "type": "number",
+                "example": 21.9
+              },
+              "typesOfExpenses": {
+                "type": "string",
+                "example": "Gasolina"
+              },
+              "date": {
+                "type": "string",
+                "example": "2022-01-01"
+              },
+              "name": {
+                "type": "string",
+                "example": "Descriçõ do gasto com a gasolina"
+              }
+            }
+          }
+        }
+      }
+    },
+    "AddUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "jhondoe@doe.com.br"
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ]
+    },
+    "AddTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "example": 1
+        },
+        "userId": {
+          "type": "number",
+          "example": 2
+        },
+        "financialData": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number",
+                "example": 1
+              },
+              "price": {
+                "type": "number",
+                "example": 21.9
+              },
+              "typesOfExpenses": {
+                "type": "string",
+                "example": "Gasolina"
+              },
+              "date": {
+                "type": "string",
+                "example": "2022-01-01"
+              },
+              "name": {
+                "type": "string",
+                "example": "Descriçõ do gasto com a gasolina"
+              }
+            },
+            "required": [
+              "id",
+              "price",
+              "typesOfExpenses",
+              "date",
+              "name"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "financialData"
+      ]
     }
   }
 }
