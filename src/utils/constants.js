@@ -1,3 +1,3 @@
 module.exports  = {
-    columnsImport:["price", "typesOfExpenses", "date", "name"]
+    columnsImport:["price", "typeOfExpenses", "date", "name"]
 }
