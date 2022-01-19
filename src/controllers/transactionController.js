@@ -6,9 +6,10 @@ const { columnsImport } = require('../utils/constants')
 module.exports = {
     show: async (req, res) => {
         // #swagger.tags = ['Transaction']
+        // #swagger.description = 'Endpoint para buscar as transações de um usuário.'
         try {
             const { userID } = req.params
-            if(!userID) throw new Error("Necessario um identificados de usuario encontrar suas movimentações.")
+            if(!userID) throw new Error("Necessario informar um usuário para encontrar suas movimentações.")
             const query = req.query
             await getUserById(userID)
             const transactions = await getTransactionsByUserIDAndQuery(userID, query)
@@ -19,6 +20,7 @@ module.exports = {
     },
     deleteTransaction: async (req, res) => {
         // #swagger.tags = ['Transaction']
+        // #swagger.description = 'Endpoint para deletar uma transação de um usuário.'
         try {
             const { userID, financialID } = req.params
             if(!userID || !financialID ) throw new Error("Dados Insuficientes para excluir.")
@@ -31,6 +33,7 @@ module.exports = {
     },
     store: async (req, res) => {
         // #swagger.tags = ['Transaction']
+        // #swagger.description = 'Endpoint para adicionar uma transação a um usuário.'
         try {
             const { userID } = req.params
             const { price, typeOfExpenses, date, name } = req.body
@@ -55,6 +58,7 @@ module.exports = {
     },
     importTransactions: async (req, res) => {
         // #swagger.tags = ['Transaction']
+        // #swagger.description = 'Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.'
         try {
             const { userID } = req.params
             if(!userID) throw new Error("Necessario um identificados de usuario para atribuir as transações.")

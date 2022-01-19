@@ -128,7 +128,7 @@
         "tags": [
           "Transaction"
         ],
-        "description": "",
+        "description": "Endpoint para buscar as transações de um usuário.",
         "parameters": [
           {
             "name": "userID",
@@ -150,13 +150,34 @@
         "tags": [
           "Transaction"
         ],
-        "description": "",
+        "description": "Endpoint para adicionar uma transação a um usuário.",
         "parameters": [
           {
             "name": "userID",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "typeOfExpenses": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -174,7 +195,7 @@
         "tags": [
           "Transaction"
         ],
-        "description": "",
+        "description": "Endpoint para deletar uma transação de um usuário.",
         "parameters": [
           {
             "name": "userID",
@@ -204,7 +225,7 @@
         "tags": [
           "Transaction"
         ],
-        "description": "",
+        "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.",
         "parameters": [
           {
             "name": "userID",
