@@ -10,7 +10,7 @@ module.exports = {
         return Object.keys(obj).length === 0
     },
     getPosition: (base, dataToFind ) => {
-        const position = base.findIndex((item) => item.id === dataToFind)
+        const position = base.findIndex((item) => item.userID === dataToFind)
         return (position > -1 ) ? position : null;
     }
 }

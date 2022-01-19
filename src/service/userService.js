@@ -6,7 +6,9 @@ module.exports = {
     },
     getUserById: async (id) => {
         const users = await getData('users')
-        return users.find((user) => user.id === Number(id))
+        const user = users.find((user) => user.id === Number(id))
+        if(!user) throw new Error("Usuário não encontrado.")
+        return user
     },
     createOrUpdateUser: async (userData, id = null) => {
         const users = await getData('users')
@@ -24,9 +26,5 @@ module.exports = {
         const users = await getData('users')
         const userFond = users.find(u => u.name.toLowerCase() === user.name.toLowerCase() && u.email.toLowerCase() === user.email.toLowerCase())
         if(userFond) throw new Error("Usuário já cadastrado.")
-    },
-    handleLogin: async (user) => {
-        const users = await getData('users')
-        return users.find(u => u.name.toLowerCase() === user.name.toLowerCase() && u.email.toLowerCase() === user.email.toLowerCase())
     }
 }

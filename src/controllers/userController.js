@@ -1,4 +1,4 @@
-const { createOrUpdateUser, hasUserWith, getAllUsers, getUserById, handleLogin } = require("../service/userService")
+const { createOrUpdateUser, hasUserWith, getAllUsers, getUserById } = require("../service/userService")
 
 module.exports = {
     index: async (req, res) => {
