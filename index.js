@@ -16,26 +16,13 @@ app.use(express.static('public'));
 
 app.use(routes)
 
-const cssSwagger = [
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-feeling-blue.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-flattop.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-material.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-monokai.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-muted.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-newspaper.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-monokai.css',
-    'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-outline.css',
-]
-const swaggerUiOpts2 = {
-    explorer: false,
-    // swaggerOptions: options,
-    // swaggerUrl: null,
-    operationsSorter: 'alpha',
-    customJs: '/swagger-js-custom.js',
-    // customCssUrl: '/assets/css/swagger-css-custom.css',
-    // customCssUrl: cssSwagger[7],
+const swaggerUiOpts = {
+    customJs: '/assets/js/swagger-js-custom.js',
+    customCssUrl: '/assets/css/swagger-css-custom.css',
+    customSiteTitle: "DevInBank | Conta365",
+    customfavIcon: "./favicon-32x32.png"
 }
 
-app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile, swaggerUiOpts2))
+app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile, swaggerUiOpts))
 
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}...`))
