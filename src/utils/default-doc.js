@@ -7,7 +7,7 @@ const doc = {
     },
     // host: "fast-mesa-03880.herokuapp.com",
     basePath: "/",
-    schemes: ['https'],
+    schemes: ['https', 'http'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [
