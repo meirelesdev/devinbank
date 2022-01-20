@@ -90,7 +90,7 @@
         }
       }
     },
-    "/api/v1/singup": {
+    "/api/v1/users/singup": {
       "post": {
         "tags": [
           "User"

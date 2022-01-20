@@ -1,17 +1,42 @@
 body {
-    background-color: #efefef;
+    /* background-color: #efefef; */
+    background-color: #ababaf;
+}
+
+.swagger-ui .opblock .opblock-summary-operation-id, .swagger-ui .opblock .opblock-summary-path, .swagger-ui .opblock .opblock-summary-path__deprecated {
+    color: inherit;
 }
 .swagger-ui .topbar {
     min-height: 100px;
-    background-color: rgba(36, 71, 175, 0.857);
+    background-color: rgba(18, 62, 194, 0.857);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.swagger-ui .scheme-container {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #ababaf;
+}
+.opblock-tag-section, .block.col-12.block-desktop.col-12-desktop {
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.5s all;
+    margin-bottom: 15px ;
+}
+.opblock-tag-section.is-open {
+    background-color: white;
+}
+
+.swagger-ui .info .title {
+    text-shadow:6px 2px 8px rgba(65, 66, 68, 0.74);
+    /* color: white; */
+    margin-bottom: 10px;
 }
 .swagger-ui .topbar-wrapper img {
     width: 100px;
     height: auto;
     border-radius: 15%;
     content: url('../img/logo.png');
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .swagger-ui .opblock-body  {
-    background-color: rgba(166, 182, 230, 0.857);
-    /* color: white; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
