@@ -5,9 +5,9 @@ const doc = {
         title: 'DevInBank | Conta-365',
         description: 'Bem vindo, aqui você encontra todos os endpoints da API Conta365.',
     },
-    host: "localhost:3333",
+    host: "fast-mesa-03880.herokuapp.com/",
     basePath: "/",
-    schemes: ['http'],
+    schemes: ['https'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [
