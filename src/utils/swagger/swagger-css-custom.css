@@ -1,0 +1,10 @@
+body { 
+    background-color: #efefef; 
+} 
+.swagger-ui .topbar { 
+    background-color: #c30ddb;
+} 
+.arrow {
+    background-color: #efefef;
+    color: white
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "swagger-docs": "node ./src/utils/swagger-generate.js"
+    "swagger-docs": "node ./src/utils/swagger/swagger-generate.js"
   },
   "author": "",
   "license": "ISC",

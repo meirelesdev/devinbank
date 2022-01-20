@@ -12,12 +12,10 @@ app.use(bodyParser)
 app.use(cors())
 
 app.use(express.json())
+app.use(express.static('public'));
 
 app.use(routes)
-const options = {
-    validatorUrl: null,
-    docExpansion: 'full',
-};
+
 const cssSwagger = [
     'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-feeling-blue.css',
     'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-flattop.css',
@@ -29,13 +27,13 @@ const cssSwagger = [
     'https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-outline.css',
 ]
 const swaggerUiOpts2 = {
-    explorer: true,
-    swaggerOptions: options,
-    customCss: '.swagger-ui .topbar { background-color: #c30ddb }',
-    swaggerUrl: null,
-    customJs: '',
+    explorer: false,
+    // swaggerOptions: options,
+    // swaggerUrl: null,
     operationsSorter: 'alpha',
-    customCssUrl: cssSwagger[1]
+    customJs: '/swagger-js-custom.js',
+    // customCssUrl: '/assets/css/swagger-css-custom.css',
+    // customCssUrl: cssSwagger[7],
 }
 
 app.use('/api/v1/docs', swaggerUI.serve, swaggerUI.setup(swaggerFile, swaggerUiOpts2))
