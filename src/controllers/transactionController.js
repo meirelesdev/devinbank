@@ -1,7 +1,7 @@
 const xlsx = require('xlsx-populate')
 const { getTransactionsByUserIDAndQuery, getAllTransactionsToRows, addTransactionsToUser, removeTransactionToUser, addOneTransactionToUser } = require("../service/transactionService")
 const { getUserById } = require('../service/userService')
-const { columnsImport } = require('../utils/constants')
+const { columnsImport, typesXLS } = require('../utils/constants')
 
 module.exports = {
     show: async (req, res) => {
@@ -32,8 +32,16 @@ module.exports = {
         }
     },
     store: async (req, res) => {
-        // #swagger.tags = ['Transaction']
-        // #swagger.description = 'Endpoint para adicionar uma transação a um usuário.'
+        /*
+            #swagger.tags = ['Transaction']
+            #swagger.description = 'Endpoint para adicionar uma transação a um usuário.'
+            #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Dados necessarios para cadastrar um transação.',
+                required: true,
+                schema: { $ref: "#/definitions/AddTransaction" }
+            }
+        */
         try {
             const { userID } = req.params
             const { price, typeOfExpenses, date, name } = req.body
@@ -59,10 +67,21 @@ module.exports = {
     importTransactions: async (req, res) => {
         // #swagger.tags = ['Transaction']
         // #swagger.description = 'Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.'
+        /*
+          #swagger.consumes = ['multipart/form-data']  
+          #swagger.parameters['file'] = {
+              in: 'formData',
+              type: 'file',
+              required: 'true',
+              description: 'Anexe uma planilha XLSX com os dados para importar',
+        } */
         try {
             const { userID } = req.params
             if(!userID) throw new Error("Necessario um identificados de usuario para atribuir as transações.")
             if(!req.file) throw new Error("Arquivo para fazer a importação não encontrado")
+            const mineType = req.file.mimetype
+            const allowedType = typesXLS === mineType
+            if(!allowedType) throw new Error("Tipo de Arquivo não permitido.")
             const { buffer } = req.file
             const dataXLSX = await xlsx.fromDataAsync(buffer, { type: 'buffer' })
             const rows = dataXLSX.sheet(0).usedRange().value()

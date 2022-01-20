@@ -35,6 +35,12 @@ module.exports = {
          *
             #swagger.tags = ['User']
             #swagger.description = 'Endpoint para registrar um novo usuario.'
+            #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Dados necessarios para cadastrar um usuário.',
+                required: true,
+                schema: { $ref: "#/definitions/AddUser" }
+            }
         */
         try {
             const { name, email } = req.body

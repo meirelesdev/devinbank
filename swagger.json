@@ -98,18 +98,12 @@
         "description": "Endpoint para registrar um novo usuario.",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Dados necessarios para cadastrar um usuário.",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/AddUser"
             }
           }
         ],
@@ -159,24 +153,12 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
+            "description": "Dados necessarios para cadastrar um transação.",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "price": {
-                  "example": "any"
-                },
-                "typeOfExpenses": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/AddTransaction"
             }
           }
         ],
@@ -226,12 +208,22 @@
           "Transaction"
         ],
         "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.",
+        "consumes": [
+          "multipart/form-data"
+        ],
         "parameters": [
           {
             "name": "userID",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true,
+            "description": "Anexe uma planilha XLSX com os dados para importar"
           }
         ],
         "responses": {
@@ -324,54 +316,28 @@
     "AddTransaction": {
       "type": "object",
       "properties": {
-        "id": {
+        "price": {
           "type": "number",
-          "example": 1
+          "example": 21.9
         },
-        "userId": {
-          "type": "number",
-          "example": 2
+        "typeOfExpenses": {
+          "type": "string",
+          "example": "Gasolina"
         },
-        "financialData": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number",
-                "example": 1
-              },
-              "price": {
-                "type": "number",
-                "example": 21.9
-              },
-              "typesOfExpenses": {
-                "type": "string",
-                "example": "Gasolina"
-              },
-              "date": {
-                "type": "string",
-                "example": "2022-01-01"
-              },
-              "name": {
-                "type": "string",
-                "example": "Descriçõ do gasto com a gasolina"
-              }
-            },
-            "required": [
-              "id",
-              "price",
-              "typesOfExpenses",
-              "date",
-              "name"
-            ]
-          }
+        "date": {
+          "type": "string",
+          "example": "2021-12-31T03:00:00.000Z"
+        },
+        "name": {
+          "type": "string",
+          "example": "Descrição do gasto com a gasolina"
         }
       },
       "required": [
-        "id",
-        "userId",
-        "financialData"
+        "price",
+        "typeOfExpenses",
+        "date",
+        "name"
       ]
     }
   }

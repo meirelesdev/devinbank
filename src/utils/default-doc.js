@@ -42,15 +42,10 @@ const doc = {
             $email: "jhondoe@doe.com.br"
         },
         AddTransaction: {
-            $id: 1,
-            $userId: 2,
-            $financialData: [{
-                $id: 1,
                 $price: 21.90,
-                $typesOfExpenses: "Gasolina",
-                $date: "2022-01-01",
-                $name: "Descriçõ do gasto com a gasolina"
-            }]
+                $typeOfExpenses: "Gasolina",
+                $date: "2021-12-31T03:00:00.000Z",
+                $name: "Descrição do gasto com a gasolina"
         }
     }
 }
