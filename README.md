@@ -1,7 +1,7 @@
 # Projeto 03 DevInBank | Conta-365
 ---
 
-Este repositorio foi criado para adicionar o projeto 03 desenvolvido no curso DevInHouse no modulo 2, que tem o objetivo de firmar os conhecimento aprendidos sobre Backend com NodeJS.
+Este repositório foi criado para adicionar o projeto 03 desenvolvido no curso DevInHouse no módulo 2, que tem o objetivo de firmar os conhecimentos aprendidos sobre Backend com NodeJS.
 
 - [Consulte a documentção aqui.](https://devinbank-conta365.herokuapp.com/api/v1/docs/)
 <p align="center">	
@@ -25,7 +25,7 @@ Este repositorio foi criado para adicionar o projeto 03 desenvolvido no curso De
 
 ## :bookmark: Sobre
 
-O <strong>Projeto DevinBank | Conta-365</strong> é o terceiro projeto da Turma Teltec e BRy do Dev in House, desenvolvido para pratica e avaliação dos conhecimento aprendidos no modulo 2 (backend com NodeJS) do curso.
+O <strong>Projeto DevinBank | Conta-365</strong> é o terceiro projeto da Turma Teltec e BRy do Dev in House, desenvolvido para prática e avaliação dos conhecimentos aprendidos no módulo 2 (backend com NodeJS) do curso.
 
 <a id="tecnologias-utilizadas"></a>
 
@@ -33,7 +33,7 @@ O <strong>Projeto DevinBank | Conta-365</strong> é o terceiro projeto da Turma 
 
 O projeto aqui disposto foi desenvolvido utilizando as seguintes tecnologias:
 - [NodeJS](https://nodejs.org/en/) no backend.
-A documentação da API foi construida utilizando:
+A documentação da API foi construída utilizando:
 - [Swagger](https://swagger.io/)
 Para a fazer modificações no layout da documentação
 - [CSS](https://www.w3schools.com/css/default.asp)
