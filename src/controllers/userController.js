@@ -44,7 +44,8 @@ module.exports = {
         */
         try {
             const { name, email } = req.body
-            if (!name || !email) throw new Error("Necessario informar todos os campos obrigatorios.")
+            if (!name ) throw new Error("O campo name é obrigatório.")
+            if (!email ) throw new Error("O campo email é obrigatório.")
             const newUser = { name, email }
             await hasUserWith(newUser)
             createOrUpdateUser(newUser)
