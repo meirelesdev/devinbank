@@ -22,12 +22,10 @@ module.exports = {
         }
         await setData('users', newDataUsers)
     },
-    hasUserWith: async (user, checkUser = false) => {
+    hasUserWith: async (user, returnUser = false) => {
         const users = await getData('users')
         const userFond = users.find(u => u.name.toLowerCase() === user.name.toLowerCase() && u.email.toLowerCase() === user.email.toLowerCase())
-        if(checkUser && userFond) {
-            return userFond
-        }
-        if(userFond) throw new Error("Usuário já cadastrado.")
+        if(userFond && !returnUser) throw new Error("Usuário já cadastrado.")
+        return userFond
     }
 }
