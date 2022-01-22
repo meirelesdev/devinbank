@@ -48,7 +48,7 @@ module.exports = {
             if (!email ) throw new Error("O campo email é obrigatório.")
             const newUser = { name, email }
             await hasUserWith(newUser)
-            createOrUpdateUser(newUser)
+            await createOrUpdateUser(newUser)
             res.status(200).json({ message: "Sucesso", user: newUser })
         } catch (e) {
             res.status(404).json({ message: e.message })
@@ -59,14 +59,23 @@ module.exports = {
          *
             #swagger.tags = ['User']
             #swagger.description = 'Endpoint para atualizar um usuario já cadastrado.'
+            #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos',
+                required: true,
+                schema: { $ref: "#/definitions/AddUser" }
+            }
         */
         try {
             const { userID } = req.params
             if (!userID) throw new Error("Id do usuário não informado")
-            const data = req.body
+            const {name, email} = req.body
+            let data = {}
+            if(name) data[name] = name
+            if(email) data[email] = email
             const user = await getUserById(userID)
             if (!user) throw new Error(`Usuário com o id ${userID}, não encontrado.`)
-            createOrUpdateUser(data, userID)
+            await createOrUpdateUser(data, userID)
             const userUpdated = await getUserById(userID)
             res.status(200).json({ message: "Sucesso", user: userUpdated })
         } catch (e) {

@@ -78,6 +78,15 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddUser"
+            }
           }
         ],
         "responses": {
@@ -189,6 +198,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
