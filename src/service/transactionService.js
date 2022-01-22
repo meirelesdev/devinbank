@@ -1,4 +1,4 @@
-const { columnsImport } = require("../utils/constants")
+const { columnsImport, monthsOfYear } = require("../utils/constants")
 const { getData, getPosition, setData } = require("../utils/functions")
 
 const getAllTransactions = async () => {
@@ -103,7 +103,34 @@ const addOneTransactionToUser = async (data, user) => {
     }
     setData('transactions', storeTransactions)
     return transactionsOfUser
-
+}
+const getOrderedTransactionByMothAndYear = (transactions) => {
+    const years = transactions.map(item => {
+        const date = new Date(item.date)
+        const ano = date.getFullYear()
+        const mes = date.getMonth()
+        return {
+            [ano]: {
+                [monthsOfYear[mes]]: item.price
+            }
+        }
+    })
+    let yearsWithData = {}
+    years.forEach((item, index) => {
+        const [year] = Object.keys(item)
+        const month = Object.keys(item[year])
+        if(index === 0 ) {
+            yearsWithData[year] = {
+                    [month]: item[year][month]
+                }
+        } else {
+            const value = yearsWithData[year] ? yearsWithData[year][month] : 0
+            yearsWithData[year] = {
+                [month]: item[year][month] + value
+            }
+        }
+    })
+    return yearsWithData
 }
 
 module.exports = {
@@ -112,5 +139,6 @@ module.exports = {
     getAllTransactionsToRows,
     removeTransactionToUser,
     addTransactionsToUser,
-    addOneTransactionToUser
+    addOneTransactionToUser,
+    getOrderedTransactionByMothAndYear
 }

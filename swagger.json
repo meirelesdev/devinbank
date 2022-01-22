@@ -172,6 +172,27 @@
         }
       }
     },
+    "/api/v1/finance/{userID}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "Endpoint para buscar as transações de um usuário exibindo seus totais por ano/mês.",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v1/transactions/{userID}/{financialID}": {
       "delete": {
         "tags": [
