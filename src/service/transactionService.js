@@ -101,7 +101,7 @@ const addOneTransactionToUser = async (data, user) => {
     } else {
         storeTransactions.push(transactionsOfUser)
     }
-    setData('transactions', storeTransactions)
+    await setData('transactions', storeTransactions)
     return transactionsOfUser
 }
 const getOrderedTransactionByMothAndYear = (transactions) => {
