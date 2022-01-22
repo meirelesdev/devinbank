@@ -7,7 +7,7 @@ module.exports = {
     getTotalTransactions: async (req, res) => {
         // #swagger.tags = ['Transaction']
         // #swagger.description = 'Endpoint para buscar as transações de um usuário exibindo seus totais por ano/mês.'
-        // try {
+        try {
             const { userID } = req.params
             if (!userID) throw new Error("Necessario informar um usuário para encontrar suas movimentações.")
             const query = req.query
@@ -15,9 +15,9 @@ module.exports = {
             const transactions = await getTransactionsByUserIDAndQuery(userID, query)
             const transactionsOrdered = getOrderedTransactionByMothAndYear(transactions)            
             res.status(200).json({ message: "sucesso", expenses: transactionsOrdered })
-        // } catch (e) {
-        //     res.status(404).json({ message: e.message })
-        // }
+        } catch (e) {
+            res.status(404).json({ message: e.message })
+        }
     },
     show: async (req, res) => {
         // #swagger.tags = ['Transaction']
