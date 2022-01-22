@@ -48,7 +48,6 @@ module.exports = {
             if (!name ) throw new Error("O campo name é obrigatório.")
             if (!email ) throw new Error("O campo email é obrigatório.")
             const newUser = { name, email }
-            const user = await hasUserWith(newUser, true)
             await createOrUpdateUser(newUser)
             const user = await hasUserWith(newUser, true)
             res.status(200).json({ message: "Sucesso", user: user })
