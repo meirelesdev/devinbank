@@ -82,7 +82,7 @@
           {
             "name": "obj",
             "in": "body",
-            "description": "Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos",
+            "description": "Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos e campos diferentes de name e email serão ignorados.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/AddUser"
