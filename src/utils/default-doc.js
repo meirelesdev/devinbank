@@ -33,7 +33,7 @@ const doc = {
                 id: 1,
                 price: 21.90,
                 typesOfExpenses: "Gasolina",
-                date: "2022-01-01",
+                date: "01/01/2022",
                 name: "Descriçõ do gasto com a gasolina"
             }]
         },
@@ -44,7 +44,7 @@ const doc = {
         AddTransaction: {
                 $price: 21.90,
                 $typeOfExpenses: "Gasolina",
-                $date: "2021-12-31T03:00:00.000Z",
+                $date: "01/01/2022",
                 $name: "Descrição do gasto com a gasolina"
         }
     }

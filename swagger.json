@@ -5,7 +5,7 @@
     "title": "DevInBank | Conta-365",
     "description": "Bem vindo, aqui você encontra todos os endpoints da API Conta365."
   },
-  "host": "localhost:3333",
+  "host": "conta365.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -18,7 +18,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -27,6 +27,13 @@
     "application/json"
   ],
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/api/v1/users": {
       "get": {
         "tags": [
@@ -318,7 +325,7 @@
               },
               "date": {
                 "type": "string",
-                "example": "2022-01-01"
+                "example": "01/01/2022"
               },
               "name": {
                 "type": "string",
@@ -359,7 +366,7 @@
         },
         "date": {
           "type": "string",
-          "example": "2021-12-31T03:00:00.000Z"
+          "example": "01/01/2022"
         },
         "name": {
           "type": "string",
