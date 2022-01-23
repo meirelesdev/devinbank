@@ -5,7 +5,7 @@
     "title": "DevInBank | Conta-365",
     "description": "Bem vindo, aqui você encontra todos os endpoints da API Conta365."
   },
-  "host": "devinbank-conta365.herokuapp.com",
+  "host": "conta365.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -17,7 +17,9 @@
       "description": "Neste endpoint você tem acesso as informações das transações de usuarios."
     }
   ],
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],
@@ -80,7 +82,7 @@
           {
             "name": "obj",
             "in": "body",
-            "description": "Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos e campos diferentes de name e email serão ignorados.",
+            "description": "Dados necessarios para atualizar um usuário. Você pode enviar apenas um ou mais campos. Campos diferentes de name e email serão ignorados. assim como campos sem valor.",
             "required": true,
             "schema": {
               "$ref": "#/definitions/AddUser"
@@ -238,7 +240,7 @@
         "tags": [
           "Transaction"
         ],
-        "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.",
+        "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.  \n   \n <h1>Modelo do Arquivo XLSX</h1>  \n <span>OBS: Os nomes das colunas e ordem deve ser a mesma em seu arquivo.</span>  <table id=\"modelo-xlsx\" width=\"300\">  <thead>  <tr>  <th>price</th>  <th>typeOfExpenses</th>  <th>date</th>  <th>name</th>  </tr>  </thead>  <tbody>  <tr>  <td>100</td>  <td>Mercado</td>  <td>01/01/2022</td>  <td>Compras do mês</td>  </tr>  </tbody>  </table>",
         "consumes": [
           "multipart/form-data"
         ],

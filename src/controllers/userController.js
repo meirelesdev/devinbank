@@ -48,6 +48,7 @@ module.exports = {
             if (!name ) throw new Error("O campo name é obrigatório.")
             if (!email ) throw new Error("O campo email é obrigatório.")
             const newUser = { name, email }
+            await hasUserWith(newUser)
             await createOrUpdateUser(newUser)
             const user = await hasUserWith(newUser, true)
             res.status(200).json({ message: "Sucesso", user: user })
@@ -62,7 +63,7 @@ module.exports = {
             #swagger.description = 'Endpoint para atualizar um usuario já cadastrado.'
             #swagger.parameters['obj'] = {
                 in: 'body',
-                description: 'Dados necessarios para atualizar um usuário. você pode enviar apenas um ou mais campos e campos diferentes de name e email serão ignorados.',
+                description: 'Dados necessarios para atualizar um usuário. Você pode enviar apenas um ou mais campos. Campos diferentes de name e email serão ignorados. assim como campos sem valor.',
                 required: true,
                 schema: { $ref: "#/definitions/AddUser" }
             }

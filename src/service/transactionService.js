@@ -1,5 +1,5 @@
 const { columnsImport, monthsOfYear } = require("../utils/constants")
-const { getData, getPosition, setData } = require("../utils/functions")
+const { getData, getPosition, setData, formatDateFromXLSX } = require("../utils/functions")
 
 const getAllTransactions = async () => {
     return await getData('transactions')
@@ -33,7 +33,7 @@ const getAllTransactionsToRows = async (rows, xlsx) => {
         return {
             price: transaction[0],
             typeOfExpenses: transaction[1],
-            date: transaction[2],
+            date: formatDateFromXLSX(transaction[2]),
             name: transaction[3]
         }
     })
@@ -119,10 +119,10 @@ const getOrderedTransactionByMothAndYear = (transactions) => {
     years.forEach((item, index) => {
         const [year] = Object.keys(item)
         const month = Object.keys(item[year])
-        if(index === 0 ) {
+        if (index === 0) {
             yearsWithData[year] = {
-                    [month]: item[year][month]
-                }
+                [month]: item[year][month]
+            }
         } else {
             const value = yearsWithData[year] ? yearsWithData[year][month] : 0
             yearsWithData[year] = {

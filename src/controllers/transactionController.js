@@ -1,7 +1,9 @@
 const xlsx = require('xlsx-populate')
+
 const { getTransactionsByUserIDAndQuery, getAllTransactionsToRows, addTransactionsToUser, removeTransactionToUser, addOneTransactionToUser, getOrderedTransactionByMothAndYear } = require("../service/transactionService")
 const { getUserById } = require('../service/userService')
 const { columnsImport, typesXLS, monthsOfYear } = require('../utils/constants')
+const { formatDate } = require('../utils/functions')
 
 module.exports = {
     getTotalTransactions: async (req, res) => {
@@ -66,13 +68,15 @@ module.exports = {
             const columns = Object.keys(req.body)
             const existAllKeys = columns.every((column, index) => columnsImport[index] === column)
             if (!existAllKeys || (columns.length !== columnsImport.length)) throw new Error("Dados para importação invalidos.")
+            const dateFormat = formatDate(date)
             const transactionData = {
                 price,
                 typeOfExpenses,
-                date,
+                date: dateFormat,
                 name
             }
             const user = await getUserById(userID)
+            // console.log(dateFormat)
             await addOneTransactionToUser(transactionData, user)
             res.status(200).json({ message: "Transação adicionada com sucesso." })
         } catch (e) {
@@ -81,8 +85,27 @@ module.exports = {
     },
     importTransactions: async (req, res) => {
         // #swagger.tags = ['Transaction']
-        // #swagger.description = 'Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.'
-        /*
+        // #swagger.description = 'Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário. 
+        /* <h1>Modelo do Arquivo XLSX</h1>
+        /* <span>OBS: Os nomes das colunas e ordem deve ser a mesma em seu arquivo.</span>
+        <table id="modelo-xlsx" width="300">
+            <thead>
+            <tr>
+                <th>price</th>
+                <th>typeOfExpenses</th>
+                <th>date</th>
+                <th>name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>100</td>
+                <td>Mercado</td>
+                <td>01/01/2022</td>
+                <td>Compras do mês</td>
+            </tr>
+            </tbody>
+        </table>'
           #swagger.consumes = ['multipart/form-data']  
           #swagger.parameters['file'] = {
               in: 'formData',

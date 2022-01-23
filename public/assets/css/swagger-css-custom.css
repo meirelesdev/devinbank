@@ -2,6 +2,17 @@ body {
     /* background-color: #efefef; */
     background-color: #ababaf;
 }
+table#modelo-xlsx {
+    max-width: 450px;
+    background-color: #ccc;
+}
+table#modelo-xlsx td,table#modelo-xlsx th{
+    border: 1px solid black;
+    text-align: center;
+}
+table#modelo-xlsx td {
+    background-color: white;
+}
 
 .swagger-ui .opblock .opblock-summary-operation-id, .swagger-ui .opblock .opblock-summary-path, .swagger-ui .opblock .opblock-summary-path__deprecated {
     color: inherit;
