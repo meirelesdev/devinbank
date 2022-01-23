@@ -27,13 +27,6 @@
     "application/json"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
     "/api/v1/users": {
       "get": {
         "tags": [
