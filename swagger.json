@@ -5,7 +5,7 @@
     "title": "DevInBank | Conta-365",
     "description": "Bem vindo, aqui você encontra todos os endpoints da API Conta365."
   },
-  "host": "conta365.herokuapp.com",
+  "host": "devinbank-conta365.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
