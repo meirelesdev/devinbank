@@ -19,6 +19,7 @@ Este repositório foi criado para adicionar o projeto 03 desenvolvido no curso D
 
 - [Sobre](#sobre)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Como Utilizar](#como-utilizar)
 - [Imagens](#imagens)
 
 <a id="sobre"></a>
@@ -37,6 +38,47 @@ A documentação da API foi construída utilizando:
 - [Swagger](https://swagger.io/)
 Para a fazer modificações no layout da documentação
 - [CSS](https://www.w3schools.com/css/default.asp)
+
+<a id="#como-utilizar"></a>
+# :construction_worker: Como Utilizar
+
+### **Pré-requisitos**
+
+  - É **necessário** possuir o **[NodeJS](https://nodejs.org/en/)** instalado na máquina.
+  - No arquivo src/utils/default-doc.js na linha 8 e 9 temos o caminho queo swagger utilizara para testar os endpoints.
+
+```bash
+# Clone o Repositório
+$ git clone https://github.com/meirelesdev/devinbank.git
+```
+
+```bash
+# Entre na pasta projeto
+$ cd devinbank
+
+```
+```bash
+# Já dentro da pasta do projeto.
+# Instale as bibliotecas utlizadas no projeto.
+$ npm install
+```
+```bash
+# Caso seja necessario atualizar a documentação rode o commando.
+# obs: Não esqueca de trocar a chave host dentro do arquivo src/utils/default-doc.js para host: "localhost:3333" ou "DOMINIO_QUE_HOSPEDARA_A_APLICAÇÃO"
+$ npm run swagger-docs
+```
+
+```bash
+# Para executar em ambiente de desenvolvimento rode o comando.
+# obs: Não esqueca de trocar a chave host dentro do arquivo src/utils/default-doc.js para host: "localhost:3333"
+$ npm run dev
+```
+
+```bash
+# Para executar em ambiente de produção.
+# OBS: Não esqueca de trocar a chave host dentro do arquivo src/utils/default-doc.js para host: "DOMINIO_QUE_HOSPEDARA_A_APLICAÇÃO"
+$ npm start
+```
 
 <a id="imagens"></a>
 ## :bookmark: Imagens

@@ -13,6 +13,7 @@ module.exports = {
             const { userID } = req.params
             if (!userID) throw new Error("Necessario informar um usuário para encontrar suas movimentações.")
             const query = req.query
+            const { price, typesOfExpenses, date, name } = req.query
             await getUserById(userID)
             const transactions = await getTransactionsByUserIDAndQuery(userID, query)
             const transactionsOrdered = getOrderedTransactionByMothAndYear(transactions)            
