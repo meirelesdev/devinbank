@@ -119,15 +119,13 @@ const getOrderedTransactionByMothAndYear = (transactions) => {
     years.forEach((item, index) => {
         const [year] = Object.keys(item)
         const [month] = Object.keys(item[year])
-        if (index === 0) {
+        if (!yearsWithData[year]) {
             yearsWithData[year] = {
                 [month]: Number(item[year][month])
             }
-        } else {
-            const value = yearsWithData[year] ? yearsWithData[year][month] : 0
-            yearsWithData[year] = {
-                [month]: Number(item[year][month]) + Number(value)
-            }
+        } else if(yearsWithData[year]) {
+            const value = yearsWithData[year][month] || 0
+            yearsWithData[year] = {...yearsWithData[year], [month]: Number(item[year][month]) + Number(value) }
         }
     })
     return yearsWithData
