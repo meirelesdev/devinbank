@@ -39,7 +39,7 @@ A documentação da API foi construída utilizando:
 Para a fazer modificações no layout da documentação
 - [CSS](https://www.w3schools.com/css/default.asp)
 
-<a id="#como-utilizar"></a>
+<a id="como-utilizar"></a>
 # :construction_worker: Como Utilizar
 
 ### **Pré-requisitos**
