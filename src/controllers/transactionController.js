@@ -76,7 +76,6 @@ module.exports = {
                 name
             }
             const user = await getUserById(userID)
-            // console.log(dateFormat)
             await addOneTransactionToUser(transactionData, user)
             res.status(200).json({ message: "Transação adicionada com sucesso." })
         } catch (e) {
