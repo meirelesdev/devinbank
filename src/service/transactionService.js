@@ -32,7 +32,7 @@ const getAllTransactionsToRows = async (rows, xlsx) => {
     return rowsWithDateFormated.map(transaction => {
         return {
             price: transaction[0],
-            typeOfExpenses: transaction[1],
+            typesOfExpenses: transaction[1],
             date: formatDateFromXLSX(transaction[2]),
             name: transaction[3]
         }
@@ -118,15 +118,15 @@ const getOrderedTransactionByMothAndYear = (transactions) => {
     let yearsWithData = {}
     years.forEach((item, index) => {
         const [year] = Object.keys(item)
-        const month = Object.keys(item[year])
+        const [month] = Object.keys(item[year])
         if (index === 0) {
             yearsWithData[year] = {
-                [month]: item[year][month]
+                [month]: Number(item[year][month])
             }
         } else {
             const value = yearsWithData[year] ? yearsWithData[year][month] : 0
             yearsWithData[year] = {
-                [month]: item[year][month] + value
+                [month]: Number(item[year][month]) + Number(value)
             }
         }
     })

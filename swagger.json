@@ -5,7 +5,7 @@
     "title": "DevInBank | Conta-365",
     "description": "Bem vindo, aqui você encontra todos os endpoints da API Conta365."
   },
-  "host": "devinbank-conta365.herokuapp.com",
+  "host": "localhost:3333",
   "basePath": "/",
   "tags": [
     {
@@ -18,6 +18,7 @@
     }
   ],
   "schemes": [
+    "http",
     "https"
   ],
   "consumes": [
@@ -27,35 +28,21 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/users": {
-      "get": {
+    "/api/v1/users/singup": {
+      "post": {
         "tags": [
           "User"
         ],
-        "description": "Endpoint que lista todos os usuários cadastrados.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/api/v1/users/{userID}": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "Endpoint que mostra os dados de um usuário cadastrado.",
+        "description": "Endpoint para registrar um novo usuario.",
         "parameters": [
           {
-            "name": "userID",
-            "in": "path",
+            "name": "obj",
+            "in": "body",
+            "description": "Dados necessarios para cadastrar um usuário.",
             "required": true,
-            "type": "string"
+            "schema": {
+              "$ref": "#/definitions/AddUser"
+            }
           }
         ],
         "responses": {
@@ -66,7 +53,9 @@
             "description": "Not Found"
           }
         }
-      },
+      }
+    },
+    "/api/v1/users/{userID}": {
       "patch": {
         "tags": [
           "User"
@@ -97,23 +86,123 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/api/v1/users/singup": {
-      "post": {
+      },
+      "get": {
         "tags": [
           "User"
         ],
-        "description": "Endpoint para registrar um novo usuario.",
+        "description": "Endpoint que mostra os dados de um usuário cadastrado.",
         "parameters": [
           {
-            "name": "obj",
-            "in": "body",
-            "description": "Dados necessarios para cadastrar um usuário.",
+            "name": "userID",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/AddUser"
-            }
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint que lista todos os usuários cadastrados.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/transactions/import/{userID}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.  \n   \n <h1>Modelo do Arquivo XLSX</h1>  \n <span>OBS: Os nomes das colunas e ordem deve ser a mesma em seu arquivo.</span>  <table id=\"modelo-xlsx\" width=\"300\">  <thead>  <tr>  <th>price</th>  <th>typesOfExpenses</th>  <th>date</th>  <th>name</th>  </tr>  </thead>  <tbody>  <tr>  <td>100</td>  <td>Mercado</td>  <td>01/01/2022</td>  <td>Compras do mês</td>  </tr>  </tbody>  </table>",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true,
+            "description": "Anexe uma planilha XLSX com os dados para importar"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/transactions/{userID}/{financialID}": {
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "Endpoint para deletar uma transação de um usuário.",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "financialID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/v1/finance/{userID}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "description": "Endpoint para buscar as transações de um usuário exibindo seus totais por ano/mês.",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -169,94 +258,6 @@
             "schema": {
               "$ref": "#/definitions/AddTransaction"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/v1/finance/{userID}": {
-      "get": {
-        "tags": [
-          "Transaction"
-        ],
-        "description": "Endpoint para buscar as transações de um usuário exibindo seus totais por ano/mês.",
-        "parameters": [
-          {
-            "name": "userID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/v1/transactions/{userID}/{financialID}": {
-      "delete": {
-        "tags": [
-          "Transaction"
-        ],
-        "description": "Endpoint para deletar uma transação de um usuário.",
-        "parameters": [
-          {
-            "name": "userID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "financialID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/api/v1/transactions/import/{userID}": {
-      "post": {
-        "tags": [
-          "Transaction"
-        ],
-        "description": "Endpoint para importar transações de uma arquivo XLSX e lançar para um usuário.  \n   \n <h1>Modelo do Arquivo XLSX</h1>  \n <span>OBS: Os nomes das colunas e ordem deve ser a mesma em seu arquivo.</span>  <table id=\"modelo-xlsx\" width=\"300\">  <thead>  <tr>  <th>price</th>  <th>typeOfExpenses</th>  <th>date</th>  <th>name</th>  </tr>  </thead>  <tbody>  <tr>  <td>100</td>  <td>Mercado</td>  <td>01/01/2022</td>  <td>Compras do mês</td>  </tr>  </tbody>  </table>",
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "parameters": [
-          {
-            "name": "userID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "file",
-            "in": "formData",
-            "type": "file",
-            "required": true,
-            "description": "Anexe uma planilha XLSX com os dados para importar"
           }
         ],
         "responses": {
@@ -353,7 +354,7 @@
           "type": "number",
           "example": 21.9
         },
-        "typeOfExpenses": {
+        "typesOfExpenses": {
           "type": "string",
           "example": "Gasolina"
         },
@@ -368,7 +369,7 @@
       },
       "required": [
         "price",
-        "typeOfExpenses",
+        "typesOfExpenses",
         "date",
         "name"
       ]

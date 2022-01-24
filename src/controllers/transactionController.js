@@ -61,7 +61,7 @@ module.exports = {
         */
         try {
             const { userID } = req.params
-            const { price, typeOfExpenses, date, name } = req.body
+            const { price, typesOfExpenses, date, name } = req.body
             Object.keys(req.body).map(field => {
                 if (!field || !req.body[field]) throw new Error(`O campo \'${field}\' é obrigatorio.`)
             })
@@ -71,7 +71,7 @@ module.exports = {
             const dateFormat = formatDate(date)
             const transactionData = {
                 price,
-                typeOfExpenses,
+                typesOfExpenses,
                 date: dateFormat,
                 name
             }
@@ -92,7 +92,7 @@ module.exports = {
             <thead>
             <tr>
                 <th>price</th>
-                <th>typeOfExpenses</th>
+                <th>typesOfExpenses</th>
                 <th>date</th>
                 <th>name</th>
             </tr>
