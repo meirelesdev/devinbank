@@ -5,7 +5,8 @@ const doc = {
         title: 'DevInBank | Conta-365',
         description: 'Bem vindo, aqui você encontra todos os endpoints da API Conta365.',
     },
-    host: "conta365.herokuapp.com",
+    // host: "localhost:3333",
+    host: "devinbank-conta365.herokuapp.com",
     basePath: "/",
     schemes: ['https'],
     consumes: ['application/json'],
@@ -43,7 +44,7 @@ const doc = {
         },
         AddTransaction: {
                 $price: 21.90,
-                $typeOfExpenses: "Gasolina",
+                $typesOfExpenses: "Gasolina",
                 $date: "01/01/2022",
                 $name: "Descrição do gasto com a gasolina"
         }
