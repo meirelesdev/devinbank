@@ -3,7 +3,7 @@
 
 Este repositório foi criado para adicionar o projeto 03 desenvolvido no curso DevInHouse no módulo 2, que tem o objetivo de firmar os conhecimentos aprendidos sobre Backend com NodeJS.
 
-- [Consulte a documentção aqui.](https://devinbank-conta365.herokuapp.com/api/v1/docs/)
+- [Consulte a documentação aqui.](https://devinbank-conta365.herokuapp.com/api/v1/docs/)
 <p align="center">	
    <a href="https://www.linkedin.com/in/developer-danielmn/">
       <img alt="Daniel Meireles" src="https://img.shields.io/badge/-Daniel Meireles-0080000?style=flat&logo=Linkedin&logoColor=white" />
