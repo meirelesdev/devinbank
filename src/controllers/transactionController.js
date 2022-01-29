@@ -46,7 +46,7 @@ module.exports = {
             await removeTransactionToUser(userID, financialID)
             res.status(200).json({ message: "Transação deletada com sucesso" })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     },
     store: async (req, res) => {
@@ -80,7 +80,7 @@ module.exports = {
             await addOneTransactionToUser(transactionData, user)
             res.status(200).json({ message: "Transação adicionada com sucesso." })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     },
     importTransactions: async (req, res) => {
@@ -128,7 +128,7 @@ module.exports = {
             const data = await addTransactionsToUser(transactions, user)
             res.status(200).json({ message: "sucesso", data })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     }
 }

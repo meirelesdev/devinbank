@@ -28,7 +28,7 @@ module.exports = {
             if (!user) throw new Error(`Usuário com o id ${userID}, não encontrado.`)
             res.status(200).json({ message: "sucesso", user })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     },
     singup: async (req, res) => {
@@ -53,7 +53,7 @@ module.exports = {
             const user = await hasUserWith(newUser, true)
             res.status(200).json({ message: "Sucesso", user: user })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     },
     update: async (req, res) => {
@@ -85,7 +85,7 @@ module.exports = {
             const user = await getUserById(userID)
             res.status(200).json({ message: "Sucesso", user })
         } catch (e) {
-            res.status(404).json({ message: e.message })
+            res.status(400).json({ message: e.message })
         }
     }
 }
